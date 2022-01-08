@@ -7,5 +7,7 @@ Unity Editor Tool Project
 ## EditorWindow
 UnityEditor.EditorWindow를 재구현합니다.
 
+기존에 EditorWindow 객체를 생성하거나, EditorWindow 정적 메소드를 사용하는 경우를, 재구현한 EditorWindow가 대체합니다.
+
 ## GUILayout
 UnityWindow.GUILayout을 재구현합니다.
