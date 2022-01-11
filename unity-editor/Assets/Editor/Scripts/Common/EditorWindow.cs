@@ -14,6 +14,7 @@ public abstract class AEditorWindow : UnityEditor.EditorWindow
 }
 public class EditorWindow : AEditorWindow
 {
+
     protected override sealed void OnGUI()
     {
         BaseOnGUI();
@@ -29,7 +30,6 @@ public class EditorWindow : AEditorWindow
     //class that inherit EditorWindow use this method instead of OnGUI()
     //if you want to make EditorWindow to abstract class, change this method to abstract...
     protected virtual void NextOnGUI(){}
-
 
 
 }
