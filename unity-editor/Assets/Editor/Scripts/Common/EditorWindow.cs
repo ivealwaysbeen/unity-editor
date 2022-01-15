@@ -8,54 +8,28 @@ using UnityEditor;
  * 
  */
 
-
-public class EditorWindow : UnityEditor.EditorWindow, IHasCustomMenu
+public abstract class AEditorWindow : UnityEditor.EditorWindow
+{
+    protected abstract void OnGUI();
+}
+public class EditorWindow : AEditorWindow
 {
 
-    EditorPopup editorPopup = new EditorPopup();
-    //string EditorWindowInformationProperty { get;  set; }
-
-
-
-    public void AddItemsToMenu(GenericMenu menu)
+    protected override sealed void OnGUI()
     {
-        menu.AddItem(new GUIContent("Editor Help"), false, OpenHelpPopup);
+        BaseOnGUI();
+        NextOnGUI();
     }
 
-    void OpenHelpPopup()
+    //called in the OnGUI function of all classes that inherit EditorWindow
+    void BaseOnGUI()
     {
-        //editorPopup.aboutStr = EditorWindowInformationProperty;
-        PopupWindow.Show(new Rect(),editorPopup);
+        
     }
+    
+    //class that inherit EditorWindow use this method instead of OnGUI()
+    //if you want to make EditorWindow to abstract class, change this method to abstract...
+    protected virtual void NextOnGUI(){}
 
-    public class EditorPopup : PopupWindowContent
-    {
-        public string aboutStr = "input your editor information";
-
-        public override void OnGUI(Rect rect)
-        {
-            GUILayout.Label("About");
-            GUILayout.Label(aboutStr);
-            GUILayout.Space(10);
-
-            GUILayout.Label("Tip");
-            foreach (var content in GUILayout.contentList.Values)
-            {
-                UnityEngine.GUILayout.Label(content.text);
-                UnityEngine.GUILayout.Label(content.tooltip);
-                UnityEngine.GUILayout.Space(5);
-            }
-        }
-
-        public override void OnOpen()
-        {
-            GUILayout.contentList.Clear();
-        }
-
-        public override void OnClose()
-        {
-        }
-    }
 
 }
-
