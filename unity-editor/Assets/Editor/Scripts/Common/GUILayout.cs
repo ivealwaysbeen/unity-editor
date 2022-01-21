@@ -12,6 +12,40 @@ using UnityEngine;
 /// 
 public class GUILayout : UnityEngine.GUILayout
 {
+    /// <summary>
+    /// Application.isPlaying을 반환하고,
+    /// 시작 중에만 사용할 수 있음을 알리는 라벨을 생성해준다
+    /// </summary>
+    public static bool ValidateApplicationIsPlaying()
+    {
+        bool isPlaying = Application.isPlaying;
+        if (isPlaying == false)
+        {
+            Label(new GUIContent("게임 시작 중에 사용하실 수 있습니다.","게임이 시작된 상태에서만 작동하는 툴입니다."));
+        }
+
+        return isPlaying;
+    }
+
+
+    public delegate void ButtonClickDelegate();
+    /// <summary>
+    /// OnGUI에서만 불리는 함수
+    /// 버튼이 눌렸을 때 어떤 행동을 하는 것을 메서드로 구현
+    /// </summary>
+    /// <param name="text">버튼의 제목</param>
+    /// <param name="tooltip">버튼의 툴탑</param>
+    /// <param name="buttonClickDelegate">버튼을 눌렸을 때 실행할 함수(파라미터 없음)</param>
+    public static void ButtonClicker(string text,string tooltip, ButtonClickDelegate buttonClickDelegate)
+    {
+        if (Button(new GUIContent(text, tooltip)) == true)
+        {
+            buttonClickDelegate.Invoke();
+        }
+    }
+
+
+
     public static Dictionary<string, GUIContent> contentList = new Dictionary<string, GUIContent>();
 
     static void AddContentList(GUIContent content)
