@@ -5,6 +5,19 @@ using UnityEditor;
 
 public class InActiveCollector : EditorWindow
 {
+    public class InActiveGameObject
+    {
+        public Transform parent;
+        public GameObject gameObject;
+        public Transform transform;
+
+        public InActiveGameObject(Transform parent, GameObject go, Transform t)
+        {
+            this.parent = parent;
+            this.gameObject = go;
+            this.transform = t;
+        }
+    }
     GameObject objectPool;
     bool onlyRootObject = true;
 
