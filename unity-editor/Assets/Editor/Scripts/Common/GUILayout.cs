@@ -27,6 +27,34 @@ public class GUILayout : UnityEngine.GUILayout
         return isPlaying;
     }
 
+    static GUIStyle warningStyle;
+    public static GUIStyle WarningStyle
+    {
+        get
+        {
+            if(warningStyle == null)
+            {
+                warningStyle = new GUIStyle();
+                warningStyle.normal.textColor = Color.yellow;
+            }
+
+            return warningStyle;
+        }
+    }
+    static GUIStyle activateStyle;
+    public static GUIStyle ActivateStyle
+    {
+        get
+        {
+            if (activateStyle == null)
+            {
+                activateStyle = new GUIStyle();
+                activateStyle.normal.textColor = Color.green;
+            }
+
+            return activateStyle;
+        }
+    }
 
     public delegate void ButtonClickDelegate();
     /// <summary>
