@@ -21,7 +21,7 @@ public class GUILayout : UnityEngine.GUILayout
         bool isPlaying = Application.isPlaying;
         if (isPlaying == false)
         {
-            Label(new GUIContent("게임 시작 중에 사용하실 수 있습니다.","게임이 시작된 상태에서만 작동하는 툴입니다."));
+            Label(new GUIContent("게임 시작 중에 사용하실 수 있습니다.", "게임이 시작된 상태에서만 작동하는 툴입니다."));
         }
 
         return isPlaying;
@@ -32,7 +32,7 @@ public class GUILayout : UnityEngine.GUILayout
     {
         get
         {
-            if(warningStyle == null)
+            if (warningStyle == null)
             {
                 warningStyle = new GUIStyle();
                 warningStyle.normal.textColor = Color.yellow;
@@ -64,7 +64,7 @@ public class GUILayout : UnityEngine.GUILayout
     /// <param name="text">버튼의 제목</param>
     /// <param name="tooltip">버튼의 툴탑</param>
     /// <param name="buttonClickDelegate">버튼을 눌렸을 때 실행할 함수(파라미터 없음)</param>
-    public static void ButtonClicker(string text,string tooltip, ButtonClickDelegate buttonClickDelegate)
+    public static void ButtonClicker(string text, string tooltip, ButtonClickDelegate buttonClickDelegate)
     {
         if (Button(new GUIContent(text, tooltip)) == true)
         {
@@ -72,7 +72,17 @@ public class GUILayout : UnityEngine.GUILayout
         }
     }
 
+    public static void BeginHorizontalFlexible()
+    {
+        UnityEngine.GUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+    }
 
+    public static void EndHorizontalFlexible()
+    {
+        GUILayout.FlexibleSpace();
+        UnityEngine.GUILayout.EndHorizontal();
+    }
 
     public static Dictionary<string, GUIContent> contentList = new Dictionary<string, GUIContent>();
 
